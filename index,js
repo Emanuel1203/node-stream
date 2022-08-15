@@ -1,0 +1,16 @@
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
+
+const port = 3000;
+
+const server = http.createServer((req, res) => {
+    const fromSrc = fs.createReadStream(path.join(_dirname, "./package.json"));
+
+    res.writeHead(200, {"constent-type": "application/json"});
+    fromSrc.pipe(res);
+});
+
+server.listen(port, () =>
+    console.log('Server running on http://localhost:${port}')
+);
